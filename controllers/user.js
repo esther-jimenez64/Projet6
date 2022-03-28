@@ -6,13 +6,21 @@ const User = require('../models/User');//récupération du shema user//
  // création de la logique de ma route post qui permet de créé un compte  exports pour  pouvoir la récuperer et l'affect a ma route //
 
 exports.signup = (req, res, next) => {
+  if(req.body. password.length < 5){
+    throw "Invalid password"
+    }
+    if(req.body.password.length > 50){
+     throw "Invalid password"
+    const regexPassword = /^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{8}$/
+                          /*variable testemail qui test le regex sur la value de l'input email*/
+                 /* variable réponse qui récupére le id pour afficher le message d'error*/
+  
 
-  if(req.body. password.length < 5){//commence par une condition pour vérifier si le mots de pass et assez sécurisé si il contient moins de 5 caractère alors invalide//
-     throw "Invalid password"
-    }
-    if(req.body.password.length > 50){//si il contient plus de 50 caractère alors invalide//
-     throw "Invalid password"
-    }
+   
+if(!regexPassword.test(req.body.password))  {
+  throw "Invalid password"
+}
+ 
 
   //suite de ma logique une fois que le mots de pass ne correspond pas à ce déclarer plus haut//
   bcrypt.hash(req.body.password, 10) //nous appelons la fonction de hachage de bcrypt dans notre mot de passe et lui demandons de saler le mot de passe 10 fois.// 
@@ -24,12 +32,13 @@ exports.signup = (req, res, next) => {
       user.save() //La fonction save() de mongose est utilisée pour enregistrer le document dans la base de données//
         .then(() => res.status(201).json({ message: 'Utilisateur créé !' }))
         .catch(error => res.status(400).json({ error }));
-                                
+                                 
     })
   
     .catch(error => res.status(400).json({ error }));
-                         
+   
 };
+   
 // création de la logique de ma route post qui permet de se connnécté a un compte  exports pour  pouvoir la récuperer et l'affecté a ma route //
 
 exports.login = (req, res, next) => {
