@@ -1,5 +1,5 @@
 const express = require('express'); //L'utilisation du framework Express simplifie les tâches et pour crée une aplication simple//
-
+console.log("lol");
 const helmet = require('helmet'); // récupération Helmet.js  un module Node.js qui aide à sécuriser les en-têtes HTTP//
 const bodyParser = require('body-parser');//récuperation du middelware body parser va renseigner la propriété req.body avec le corps analysé de la requête.//
 const mongoose = require('mongoose'); //récupération de l'outils Mongoose qui  nous permet de  modéliser nos données//
