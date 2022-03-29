@@ -1,5 +1,4 @@
 const express = require('express'); //L'utilisation du framework Express simplifie les tâches et pour crée une aplication simple//
-console.log("lol");
 const helmet = require('helmet'); // récupération Helmet.js  un module Node.js qui aide à sécuriser les en-têtes HTTP//
 const bodyParser = require('body-parser');//récuperation du middelware body parser va renseigner la propriété req.body avec le corps analysé de la requête.//
 const mongoose = require('mongoose'); //récupération de l'outils Mongoose qui  nous permet de  modéliser nos données//
@@ -7,7 +6,7 @@ const path = require('path');//récupération module Path qui permet de travaill
  require('dotenv').config(); //récupération du module dotenv qui stocke les donné sensible dans des variables d'environement//
 const saucesRoutes = require('./routes/sauces');//récupération de mes routes sauces //
 const userRoutes = require('./routes/user'); //récupération de mes routes user//
-const test = process.env.Secret_DB; //const qui contient l'adresse de ma base de donné//
+const baseDB = process.env.Secret_DB; //const qui contient l'adresse de ma base de donné//
 const rateLimit = require('express-rate-limit')//récup du package ratelimit qui empêche la même adresse IP de faire trop de demandes qui nous aideront à prévenir les attaques comme la force brute////fonctionnalité très puissante pour sécuriser les API backend contre les attaques malveillantes//
 const limiter = rateLimit({   //configuration de rate limit//
   windowMs: 15 * 60 * 1000, // 15 min
@@ -20,7 +19,7 @@ const limiter = rateLimit({   //configuration de rate limit//
 //connexion avec mongoose qui gère la base de donnée MongoDB//
 mongoose
 .connect(
-   test, //l'adresse de ma base de donné//
+   baseDB, //l'adresse de ma base de donné//
    { useNewUrlParser: true, useUnifiedTopology: true }
 )
   .then(() => console.log('Connexion à MongoDB réussie !'))

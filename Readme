@@ -1,0 +1,8 @@
+1. Clonez le repository
+2. Ouvrez un terminal (Linux/Mac) ou une invite de commande/PowerShell
+(Windows)
+3. Exécutez npm install à partir du dossier frontend
+4. Exécutez npm start
+5. Exécutez nodemon server à partir du dossier backend
+6. Exécutez le back-end sur http://localhost:3000 seulement
+8.Créer un dossier images à partir du dossier backend dans le qu'elle seront  stocker les images des sauces. 

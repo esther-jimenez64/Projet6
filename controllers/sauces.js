@@ -42,18 +42,18 @@ exports.modifySauce = (req, res, next) => { // création de la logique de ma rou
  if( req.auth.userId ===  sauce.userId){ //si l' id de l'user qui à créé la sauce et égal l'userID qui désire modifier la sauce//
   const sauceObject = req.file ? //dans se cas là création d'un objet contenant la sauce qui sera modifier  par l'utilisateur contenue dans la requete//  
 
-  //regarde si req.file existe ou non. S'il existe, on traite la nouvelle image ; s'il n'existe pas, on traite simplement l'objet entrant. On crée ensuite une instance Thing à partir de thingObject , puis on effectue la modification.//                                
+  //regarde si req.file existe ou non. S'il existe, on traite la nouvelle image ; s'il n'existe pas, on traite simplement l'objet entrant. On crée ensuite une instance Sauce à partir de sauceObject , puis on effectue la modification.//                                
     {
       ...JSON.parse(req.body.sauce), //transforme un objet stringifié en Object JavaScript exploitable.//
       imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`//reconstruire l'URL complète du fichier enregistré.//
     } : { ...req.body };
   Sauce.updateOne({ _id: req.params.id }, { ...sauceObject, _id: req.params.id }) //nous actualisont la modification de la sauce
-    .then(() => res.status(200).json({ message: 'Objet modifié !'}))//utilisanr le paramètre id de la requête pour configurer notre Thing avec le même _id qu'avant.//   //2ème argument le nouvelle versionde l' objet on récupere la sauce qui est dans le corps de la requete et on vérifie bien que l'id du paremettre du body est bien le meme//
+    .then(() => res.status(200).json({ message: 'Objet modifié !'}))//utilisanr le paramètre id de la requête pour configurer notre Sauce avec le même _id qu'avant.//   //2ème argument le nouvelle versionde l' objet on récupere la sauce qui est dans le corps de la requete et on vérifie bien que l'id du paremettre du body est bien le meme//
     .catch(error => res.status(400).json({ error }));
   } 
   else
   {
-    console.log( res.status(401).json({ error }));
+  res.status(401).json({ error });
   }
 })
 }; 
