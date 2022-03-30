@@ -1,14 +1,14 @@
-const express = require('express'); //L'utilisation du framework Express simplifie les tâches et pour crée une aplication simple//
-const helmet = require('helmet'); // récupération Helmet.js  un module Node.js qui aide à sécuriser les en-têtes HTTP//
-const bodyParser = require('body-parser');//récuperation du middelware body parser va renseigner la propriété req.body avec le corps analysé de la requête.//
-const mongoose = require('mongoose'); //récupération de l'outils Mongoose qui  nous permet de  modéliser nos données//
-const path = require('path');//récupération module Path qui permet de travailler avec des répertoires et des chemins de fichiers//
- require('dotenv').config(); //récupération du module dotenv qui stocke les donné sensible dans des variables d'environement//
-const saucesRoutes = require('./routes/sauces');//récupération de mes routes sauces //
-const userRoutes = require('./routes/user'); //récupération de mes routes user//
+const express = require('express'); //L'utilisation du framework Express simplifie les tâches et pour créer une application simple//
+const helmet = require('helmet'); // Récupération Helmet.js  un module Node.js qui aide à sécuriser les en-têtes HTTP//
+const bodyParser = require('body-parser');//Récupération du middleware body parser va renseigner la propriété req.body avec le corps analysé de la requête.//
+const mongoose = require('mongoose'); //Récupération de l'outil Mongoose qui  nous permet de  modéliser nos données//
+const path = require('path');//Récupération module Path qui permet de travailler avec des répertoires et des chemins de fichiers//
+ require('dotenv').config(); //rRécupération du module dotenv qui stocke les donnés sensible dans des variables d'environnements//
+const saucesRoutes = require('./routes/sauces');//Récupération de mes routes sauces //
+const userRoutes = require('./routes/user'); //Récupération de mes routes user//
 const baseDB = process.env.Secret_DB; //const qui contient l'adresse de ma base de donné//
 const rateLimit = require('express-rate-limit')//récup du package ratelimit qui empêche la même adresse IP de faire trop de demandes qui nous aideront à prévenir les attaques comme la force brute////fonctionnalité très puissante pour sécuriser les API backend contre les attaques malveillantes//
-const limiter = rateLimit({   //configuration de rate limit//
+const limiter = rateLimit({   //Configuration de rate limit//
   windowMs: 15 * 60 * 1000, // 15 min
   max: 300, // limite chaque IP à 100 requêtes par window de 15min
   standardHeaders: true, // retourne l'info de limite dans les headers
@@ -25,9 +25,9 @@ mongoose
   .then(() => console.log('Connexion à MongoDB réussie !'))
   .catch(() => console.log('Connexion à MongoDB échouée !'));
   
-const app = express();//appéle à la méthode express//
-//ajout à la pile de middleware express  limiter,  express.json,et de helmet//
-app.use(limiter); //qui empêche la même adresse IP de faire trop de demandes //
+const app = express();//Appelé à la méthode express//
+//ajout à la pile de middleware express  limiter,  express.json,et de helmet//
+app.use(limiter); //Qui empêche la même adresse IP de faire trop de demandes //
 app.use(express.json());
 app.use(helmet());//qui aide à sécuriser les en-têtes HTTP//
 

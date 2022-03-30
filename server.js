@@ -35,7 +35,7 @@ const errorHandler = error => { //la fonction errorHandler  recherche les diffé
   }
 };
 
-const server = http.createServer(app); // création du server avec methode creteServer qui reçoit la fonction app//
+const server = http.createServer(app); // Création du serveur avec méthode creteServer qui reçoit la fonction app//
 
 server.on('error', errorHandler);// appel de la fonction de gestion d'erreur//
 server.on('listening', () => {// écoute du port d'exécution du serveur//
@@ -44,5 +44,5 @@ server.on('listening', () => {// écoute du port d'exécution du serveur//
   console.log('Listening on ' + bind);
 });
 
-server.listen(port);// Ecoute des requêtes envoyées par le port disponible//
+server.listen(port);// Écoute des requêtes envoyées par le port disponible//
 
