@@ -13,14 +13,14 @@ const limiter = rateLimit({   //Configuration de rate limit//
   max: 300, // limite chaque IP à 100 requêtes par window de 15min
   standardHeaders: true, // retourne l'info de limite dans les headers
   legacyHeaders: false, // désactive le 'X-rateLimit-*' headers
-  skipSuccessfulRequests: true
+  skipSuccessfulRequests: true//que les requêtes qui se connecte avec une réusite ne soit pas comptapilisé//
 });
 
 //connexion avec mongoose qui gère la base de donnée MongoDB//
 mongoose
 .connect(
    baseDB, //l'adresse de ma base de donné//
-   { useNewUrlParser: true, useUnifiedTopology: true }
+   { useNewUrlParser: true, useUnifiedTopology: true }// le pilote MongoDB essaiera de trouver un serveur auquel envoyer une opération donnée // //useNewUrlParser pour permettre aux utilisateurs de revenir à l'ancien analyseur //
 )
   .then(() => console.log('Connexion à MongoDB réussie !'))
   .catch(() => console.log('Connexion à MongoDB échouée !'));
@@ -40,7 +40,7 @@ app.use((req, res, next) => {
   next();
 })
 
-app.use('/images', express.static(path.join(__dirname, 'images'))); //Cela indique à Express qu'il faut gérer la ressource images de manière statique (un sous-répertoire de notre répertoire de base, __dirname ) à chaque fois qu'elle reçoit une requête vers la route /images . Enregistrez et actualisez l'application dans le navigateur// 
+app.use('/images', express.static(path.join(__dirname, 'images'))); // pour éviter une erreur 404. ON va  indiqué à Express qu'il faut gérer la ressource images de manière statique (un sous-répertoire de notre répertoire de base, __dirname ) à chaque fois qu'elle reçoit une requête vers la route /images . Enregistrez et actualisez l'application dans le navigateur// 
 app.use('/api/sauces', saucesRoutes); //méthode use nous lui passons un string, correspondant à la route pour laquelle nous souhaitons enregistrer cet élément de middleware//
 app.use('/api/auth', userRoutes); //méthode use nous lui passons un string, correspondant à la route pour laquelle nous souhaitons enregistrer cet élément de middleware//
 
